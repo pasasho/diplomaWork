@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Spell List</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+
+    <meta name="description" content="Page description" />
+    <meta property="og:title" content="Unique page title - My Site" />
+    <meta property="og:description" content="Page description" />
+    <meta property="og:image" content="https://www.mywebsite.com/image.jpg" />
+    <meta property="og:image:alt" content="Image description" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content="https://www.mywebsite.com/page" />
+    <link rel="canonical" href="https://www.mywebsite.com/page" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel&amp;display=swap">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <meta name="theme-color" content="#FF00FF" />
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" style="background: #a80c35;">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand logo" href="#" style="background: url(&quot;assets/img/logo2.png&quot;) no-repeat;background-size: contain;width: 100px;height: 52px; margin-right: 40px;"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Home</a></li>
+            <li><a href="dice.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Dice Roller</a></li>
+            <li><a href="" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Character Sheet</a></li>
+            <li><a href="spells.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Spells</a></li>
+            <li><a href="" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Character Generator</a></li>
+            <li><a href="" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Resources</a></li>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <!-- Navigation -->
+
+    <div class="container">
+      <h2>Spell List</h2>
+      <input type="text" id="search-bar" placeholder="Search" />
+      <hr />
+
+      <div class="col-sm-12">
+        <div class="panel-group ng-scope" id="accordion">
+          <div class="panel panel-default spell-template">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-sm-3 spell-name">Spell Name</div>
+                    </div>
+                  </div>
+                </a>
+              </h4>
+            </div>
+            <div class="panel-collapse collapse">
+              <div class="panel-body spell-body">Spell Body</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <ul id="myPager" class="pagination"></ul>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    /* pagination plugin */
+    $.fn.pageMe = function (opts) {
+      var $this = this,
+        defaults = {
+          perPage: 7,
+          showPrevNext: false,
+          numbersPerPage: 1,
+          hidePageNumbers: false,
+        },
+        settings = $.extend(defaults, opts);
+
+      var listElement = $this;
+      var perPage = settings.perPage;
+      var children = listElement.children();
+      var pager = $(".pagination");
+
+      if (typeof settings.childSelector != "undefined") {
+        children = listElement.find(settings.childSelector);
+      }
+
+      if (typeof settings.pagerSelector != "undefined") {
+        pager = $(settings.pagerSelector);
+      }
+
+      var numItems = children.size();
+      var numPages = Math.ceil(numItems / perPage);
+
+      var curr = 0;
+      pager.data("curr", curr);
+
+      if (settings.showPrevNext) {
+        $('<li><a href="#" class="prev_link">«</a></li>').appendTo(pager);
+      }
+
+      while (numPages > curr && settings.hidePageNumbers == false) {
+        $(
+          '<li><a href="#" class="page_link">' + (curr + 1) + "</a></li>"
+        ).appendTo(pager);
+        curr++;
+      }
+
+      if (settings.numbersPerPage > 1) {
+        $(".page_link").hide();
+        $(".page_link")
+          .slice(pager.data("curr"), settings.numbersPerPage)
+          .show();
+      }
+
+      if (settings.showPrevNext) {
+        $('<li><a href="#" class="next_link">»</a></li>').appendTo(pager);
+      }
+
+      pager.find(".page_link:first").addClass("active");
+      pager.find(".prev_link").hide();
+      if (numPages <= 1) {
+        pager.find(".next_link").hide();
+      }
+      pager.children().eq(0).addClass("active");
+
+      children.hide();
+      children.slice(0, perPage).show();
+
+      pager.find("li .page_link").click(function () {
+        var clickedPage = $(this).html().valueOf() - 1;
+        goTo(clickedPage, perPage);
+        return false;
+      });
+      pager.find("li .prev_link").click(function () {
+        previous();
+        return false;
+      });
+      pager.find("li .next_link").click(function () {
+        next();
+        return false;
+      });
+
+      function previous() {
+        var goToPage = parseInt(pager.data("curr")) - 1;
+        goTo(goToPage);
+      }
+
+      function next() {
+        goToPage = parseInt(pager.data("curr")) + 1;
+        goTo(goToPage);
+      }
+
+      function goTo(page) {
+        var startAt = page * perPage,
+          endOn = startAt + perPage;
+
+        children.css("display", "none").slice(startAt, endOn).show();
+
+        if (page >= 1) {
+          pager.find(".prev_link").show();
+        } else {
+          pager.find(".prev_link").hide();
+        }
+
+        if (page < numPages - 1) {
+          pager.find(".next_link").show();
+        } else {
+          pager.find(".next_link").hide();
+        }
+
+        pager.data("curr", page);
+
+        if (settings.numbersPerPage > 1) {
+          $(".page_link").hide();
+          $(".page_link")
+            .slice(page, settings.numbersPerPage + page)
+            .show();
+        }
+
+        pager.children().removeClass("active");
+        pager
+          .children()
+          .eq(page + 1)
+          .addClass("active");
+      }
+    };
+    /* end plugin */
+    function run() {
+      if (cloning == null) {
+        cloning = $(".spell-template").clone();
+      }
+      $("#accordion").html("");
+      $("#myPager").html("");
+
+      $.getJSON("spells.json", function (spells) {
+        $.each(spells, function (index, spell) {
+          if (
+            (spell.name + " " + spell.classes.join(" "))
+              .toLowerCase()
+              .indexOf($("#search-bar").val().toLowerCase()) < 0
+          ) {
+            return;
+          }
+          let c = cloning.clone().removeClass("spell-template");
+          $("a:first", c).attr("href", "#collapse" + index);
+          $("div.collapse", c).attr("id", "collapse" + index);
+          $(".spell-name", c).text(spell.name);
+          $(".spell-body", c).html(`<div>
+    <div><b>Type</b>: ${spell.type}</div>
+    <div><b>Casting Time</b>: ${spell.casting_time}</div>
+    <div><b>Range</b>: ${spell.range}</div>
+    <div><b>Components</b>: ${spell.components.raw}</div>
+    <div><b>Duration</b>: ${spell.duration}</div>
+    <div>${
+      spell.description
+    }<br /><b><em>At Higher Levels:</em></b> ${spell.higher_levels || "N/A"}<br /></div>
+    <div><b>Class</b>: ${spell.classes.join(", ")}</div>
+</div>`);
+          $("#accordion").append(c);
+        });
+        $("#accordion").pageMe({
+          pagerSelector: "#myPager",
+          childSelector: ".panel",
+          showPrevNext: true,
+          hidePageNumbers: false,
+          perPage: 10,
+        });
+      });
+    }
+
+    $(document).ready(function () {
+      run();
+      $("#search-bar").on("input", function () {
+        run();
+      });
+    });
+
+    var cloning = null;
+  </script>
+</html>

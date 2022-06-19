@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dice Roller</title>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <meta name="description" content="Page description">
+  <meta property="og:title" content="Unique page title - My Site">
+  <meta property="og:description" content="Page description">
+  <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+  <meta property="og:image:alt" content="Image description">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://www.mywebsite.com/page">
+  <link rel="canonical" href="https://www.mywebsite.com/page">
+
+    <!---->
+  
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel&amp;display=swap">
+  <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+
+
+    <!---->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <meta name="theme-color" content="#FF00FF">
+<style>
+  html {
+  text-align: center;
+}
+
+.header {
+  background-color: #ffffff;
+  text-align: center;
+  padding: 15px;
+}
+
+h1 {
+  color: black;
+  text-align: center;
+  font-family: 'Metal Mania';
+  font-size: 50px;
+}
+
+.roll {
+  padding: 1em;
+}
+
+.result {
+  height: 100px;
+  width: 100px;
+  margin: 20px auto;
+  background: white;
+  border: 4px solid grey;
+  border-radius: 10px;
+  font-family: 'Metal Mania';
+  font-size: 4em;
+  line-height: 100px;
+  text-align: center;
+}
+
+</style>
+ 
+
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-light navbar-expand-lg fixed-top clean-navbar" style="background: #a80c35;">
+    <div class="container"><a class="navbar-brand logo" href="#" style="background: url(&quot;assets/img/logo2.png&quot;) no-repeat;background-size: contain;width: 100px;height: 52px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-center active" href="index.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="dice.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Dice Roller</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="char.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Character Sheet</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="spells.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Spells</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="chargen.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Character Generator</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="resources.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Resources</a></li>
+                <li class="nav-item"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br>
+<br>
+<br>
+<br>
+
+
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+<script src="assets/js/vanilla-zoom.js"></script>
+<script src="assets/js/theme.js"></script>
+
+
+
+  <link href='https://fonts.googleapis.com/css?family=Metal Mania' rel='stylesheet'>
+  <link href='https://fonts.googleapis.com/css?family=IM Fell Great Primer SC' rel='stylesheet'>
+  
+  <div class=header>
+    <h1>Roll on!</h1>
+  </div>
+  
+  <button onclick="d4Roll()">
+    <input type="image" img src="pictures/d4.png"></button>
+  
+  <button onclick="d6Roll()">
+    <input type="image" img src="pictures/d6.png"></button>
+  
+  <button onclick="d8Roll()">
+    <input type="image" img src="pictures/d8.png"></button>
+  
+  <button onclick="d10Roll()">
+    <input type="image" img src="pictures/d10.png"></button>
+  
+  <button onclick="d12Roll()">
+    <input type="image" img src="pictures/d12.png"></button>
+  
+  <button onclick="d20Roll()">
+    <input type="image" img src="pictures/d20.png"></button>
+  
+  <div class="result">
+    <div id="display"></div>
+  </div>
+  
+
+
+
+<script>
+  function randomNumber(range) {
+  return Math.round( Math.random() * range );
+}
+
+// --- d4 --- //
+function d4Roll(){
+  var d4Result = Math.floor(Math.random()*4+1);
+  document.getElementById('display').innerHTML = d4Result;
+}
+
+// --- d6 --- //
+function d6Roll(){
+  var d6Result = Math.floor(Math.random()*6+1);
+  document.getElementById('display').innerHTML = d6Result;
+}
+
+// --- d8 --- //
+function d8Roll(){
+  var d8Result = Math.floor(Math.random()*8+1);
+  document.getElementById('display').innerHTML = d8Result;
+}
+
+// --- d10 --- //
+function d10Roll(){
+  var d10Result = Math.floor(Math.random()*10+1);
+  document.getElementById('display').innerHTML = d10Result;
+}
+
+// --- d12 --- //
+function d12Roll(){
+  var d12Result = Math.floor(Math.random()*12+1);
+  document.getElementById('display').innerHTML = d12Result;
+}
+
+// --- d20 --- //
+function d20Roll(){
+  var d20Result = Math.floor(Math.random()*20+1);
+  document.getElementById('display').innerHTML = d20Result;
+  if (d20Result == 20){
+    alert("CRITICAL HIT!");
+  }
+}
+
+// --- d100 --- //
+function d100Roll(){
+  var d100Result = Math.floor(Math.random()*100+1);
+  document.getElementById('display').innerHTML = d100Result;
+}
+
+</script>
+</body>
+</html>
