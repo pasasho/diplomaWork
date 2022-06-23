@@ -1,3 +1,85 @@
+function randomIntFromInterval(min, max) {
+  // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function randomCheck() {
+  //  
+   var check = [];
+    if ( Math.random() > .5 ){
+      check = true;
+    } else {
+      check = false;  
+    }
+  return check;
+}
+
+function randomSelectArmor() {
+  //
+if (strScore > 14) {
+    switchMax = 12;
+  } else if (strScore > 12) {
+    switchMax = 10;
+  } else {
+    switchMax = 9;
+  }  
+  switch (randomIntFromInterval(0, switchMax)) {
+    case  0 : myArmor = "unarmored"; break;
+    case  1 : myArmor = "padded"; break;
+    case  2 : myArmor = "leather"; break;
+    case  3 : myArmor = "studded"; break;
+    case  4 : myArmor = "hide"; break;
+    case  5 : myArmor = "chain"; break;
+    case  6 : myArmor = "scale"; break;
+    case  7 : myArmor = "breastplate"; break;
+    case  8 : myArmor = "halfplate"; break;
+    case  9 : myArmor = "ringmail"; break;
+    case 10 : myArmor = "chainmailArmor"; break;
+    case 11 : myArmor = "splintArmor"; break;
+    case 12 : myArmor = "plateArmor"; break;
+  }
+  return myArmor;
+}
+
+function randomSelectShield(str) {
+  //
+  switch (randomIntFromInterval(0, 1)) {
+    case 0 : myShield = "none"; break;
+    case 1 : myShield = "shield"; break;
+  } 
+  return myShield;
+}
+
+function generateVariables() {
+  // Generate all values
+  localStorage.setItem("playerLevel", randomIntFromInterval(1, 20));
+  localStorage.setItem("strScore", randomIntFromInterval(4, 18));
+  localStorage.setItem("dexScore", randomIntFromInterval(4, 18));
+  localStorage.setItem("conScore", randomIntFromInterval(4, 18));
+  localStorage.setItem("intScore", randomIntFromInterval(4, 18));
+  localStorage.setItem("wisScore", randomIntFromInterval(4, 18));
+  localStorage.setItem("chaScore", randomIntFromInterval(4, 18));
+  localStorage.setItem("equippedArmor", randomSelectArmor());
+  localStorage.setItem("equippedShield", randomSelectShield());
+  localStorage.setItem("acroProf", randomCheck());
+  localStorage.setItem("animProf", randomCheck());
+  localStorage.setItem("arcaProf", randomCheck());
+  localStorage.setItem("athlProf", randomCheck());
+  localStorage.setItem("decProf", randomCheck());
+  localStorage.setItem("hisProf", randomCheck());
+  localStorage.setItem("insProf", randomCheck());
+  localStorage.setItem("intiProf", randomCheck());
+  localStorage.setItem("invProf", randomCheck());
+  localStorage.setItem("medProf", randomCheck());
+  localStorage.setItem("natProf", randomCheck());
+  localStorage.setItem("percProf", randomCheck());
+  localStorage.setItem("perfProf", randomCheck());
+  localStorage.setItem("persProf", randomCheck());
+  localStorage.setItem("relProf", randomCheck());
+  localStorage.setItem("sleiProf", randomCheck());
+  localStorage.setItem("steProf", randomCheck());
+}
+
 function getStoredValues() {
   // Set player level
   document.getElementById("playerLevel").value = localStorage.getItem("playerLevel");

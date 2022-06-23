@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Dice Roller</title>
+
+  <link rel="stylesheet" href="/css/styles.css">
+
+  <meta name="description" content="Page description">
+  <meta property="og:title" content="Unique page title - My Site">
+  <meta property="og:description" content="Page description">
+  <meta property="og:image" content="https://www.mywebsite.com/image.jpg">
+  <meta property="og:image:alt" content="Image description">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:url" content="https://www.mywebsite.com/page">
+  <link rel="canonical" href="https://www.mywebsite.com/page">
+
+    <!---->
+  
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i&amp;display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cinzel&amp;display=swap">
+  <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.css">
+  <link rel="stylesheet" href="assets/css/vanilla-zoom.min.css">
+
+
+    <!---->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  <meta name="theme-color" content="#FF00FF">
+
+  
+<style>
+
+body {
+  font-family: "Roboto", sans-serif;
+
+}
+.containerHere {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  margin: auto;
+  height: auto;
+  justify-content: space-evenly;
+}
+
+.flex-container{
+  display: flex;
+}
+
+.form-container{
+  display: flex;
+  flex-direction: column;
+  margin-right: 5px;
+  flex: 1;
+  background-color:rgba(17, 21, 28, 0.85);
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+/* Font Classes */
+.primary-font {
+  color: #fff;
+}
+
+.strong-font {
+  font-weight: 900;
+}
+
+.light-text {
+  font-weight: 100;
+}
+
+/* Main Head */
+#main-heading {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+  margin-top: 5px;
+  font-size: 2rem;
+}
+
+/* Sub Head */
+#class-h2 {
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+
+
+/* Input Section */
+.form-container input,
+.form-container select{
+  display: block;
+  width: 100%;
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+/* Character Info Section */
+#char-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 10px;
+}
+
+#form-heading,
+#info-heading{
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#char-form input {
+  display: block;
+  width: 33%;
+  border-radius: 5px;
+  border: 1px solid #333;
+  padding: 5px;
+  margin: 10px;
+}
+
+/* Randomize button */
+#randomize-all {
+  display: block;
+  width: 34%;
+  padding: 20px;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  background-color: rgba(17, 21, 28, 0.85);
+  color: #fff;
+}
+
+#randomize-all:hover {
+  cursor: pointer;
+  background-color: rgba(66, 73, 85, 0.85);
+  color: #fff;
+}
+
+/* Info Section */
+.info-container {
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: rgba(17, 21, 28, 0.85);
+  color: #ccdad1;
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-left: 5px;
+  flex: 1;
+}
+
+.border{
+  border: 1px #fff solid;
+}
+
+.info-container p {
+  padding: 10px;
+  text-align: left;
+}
+
+#stats-heading{
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.hidden{
+  display: none;
+}
+
+#char-stats{
+  list-style: none;
+  width: 50%;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+</style>
+ 
+
+</head>
+
+<body>
+  
+  <nav class="navbar navbar-light navbar-expand-lg fixed-top clean-navbar" style="background: #a80c35;">
+    <div class="container"><a class="navbar-brand logo" href="#" style="background: url(&quot;assets/img/logo2.png&quot;) no-repeat;background-size: contain;width: 100px;height: 52px;"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-center active" href="index.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="dice.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Dice Roller</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="char.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Character Sheet</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="spells.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Spells</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="chargen.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Character Generator</a></li>
+                <li class="nav-item"><a class="nav-link text-center" href="resources.html" style="font-family: Cinzel, serif;font-weight: bold;color: rgb(255,255,255);padding-left: 22px;">Resources</a></li>
+                <li class="nav-item"></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<!-- Generator body -->
+<br>
+
+<div class="containerHere">
+
+  <h1 id="main-heading" class="primary-font heading-lg" style="color:black">
+    <br>
+    <br>
+    <br>
+    Roleplaying NPC generator!
+  </h1>
+  <h2 id="class-h2" style="color:black">Click the button below to generate a new NPC!</h2>
+  <div class="flex-container">
+  <section class="form-container">
+    <h3 id="form-heading">Character Input</h3>
+    <form action="" class="char-input-form">
+      <label for="char-name-entry">Character Name: </label>
+      <input type="text" name="char-name-entry" id="char-name-input" placeholder="Leave this field blank to generate a name.">
+      <label for="gender-entry">Gender: </label>
+      <select name="gender-entry" id="gender-input">
+        <option value="Random">Random</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <label for="race-entry">Race: </label>
+      <select name="race-entry" id="race-input">
+        <option value="Random">Random</option>
+        <option value="Human">Human</option>
+        <option value="Halfling">Halfling</option>
+        <option value="Dwarf">Dwarf</option>
+        <option value="Elf">Elf</option>
+        <option value="Orc">Orc</option>
+        <option value="Gnome">Gnome</option>
+      </select>
+      <label for="power-entry">Power Level: </label>
+      <select name="power-entry" id="power-input">
+        <option value="Random">Random</option>
+        <option value="Weak (-2 to all stats)">Weak (-2 to all stats)</option>
+        <option value="Average (+0 to all stats)">Average (+0 to all stats)</option>
+        <option value="Strong (+2 to all stats)">Strong (+2 to all stats)</option>
+        <option value="Extreme (+4 to all stats)">Extreme (+4 to all stats)</option>
+        <option value="Demigod (+6 to all stats)">Demigod (+6 to all stats)</option>
+      </select>
+      <label for="trait-entry">Character Trait: </label>
+      <select name="trait-entry" id="trait-input">
+        <option value="Random">Random</option>
+        <option value="Selfish">Selfish</option>
+        <option value="Altruistic">Altruistic</option>
+        <option value="Confident">Confident</option>
+        <option value="Overconfident">Overconfident</option>
+        <option value="Naive">Naive</option>
+        <option value="Wise">Wise</option>
+        <option value="Friendly">Friendly</option>
+        <option value="Quiet">Quiet</option>
+        <option value="Shy">Shy</option>
+        <option value="Flirty">Flirty</option>
+      </select>
+      <label for="alignment-entry">Alignment: </label>
+      <select name="alignment-entry" id="alignment-input">
+        <option value="Random">Random</option>
+        <option value="Lawful Good">Lawful Good</option>
+        <option value="Lawful Neutral">Lawful Neutral</option>
+        <option value="Lawful Evil">Lawful Evil</option>
+        <option value="Neutral Good">Neutral Good</option>
+        <option value="Neutral">Neutral</option>
+        <option value="Neutral Evil">Neutral Evil</option>
+        <option value="Chaotic Good">Chaotic Good</option>
+        <option value="Chaotic Neutral">Chaotic Neutral</option>
+        <option value="Chaotic Evil">Chaotic Evil</option>
+      </select>
+      <label for="background-entry">Background: </label>
+      <select name="background-entry" id="background-input">
+        <option value="Random">Random</option>
+        <option value="was raised in a small village."> was raised in a small village.</option>
+        <option value="found a magic sword and was granted immense power."> found a magic sword and was granted immense power.</option>
+        <option value="grew rich from an inheritance."> grew rich from an inheritance.</option>
+        <option value="has many lovers."> has many lovers.</option>
+        <option value="wants revenge against any and all enemies."> wants revenge against any and all enemies.</option>
+        <option value="was raised in an orphanage."> was raised in an orphanage.</option>
+        <option value="has a curse."> has a curse.</option>
+        <option value="was sired by a great hero."> was sired by a great hero.</option>
+        <option value="was sired by a great villain."> was sired by a great villain.</option>
+        <option value="works in a shop in a small village."> works in a shop in a small village.</option>
+      </select>
+    </form>
+  </section>
+  <section class="info-container">
+    <h3 id="info-heading">Character Information</h3>
+    <p class="strong-font" id="char-name">
+      Name: <span class="light-text" id="name-text"></span>
+    </p>
+    <p class="strong-font" id="char-gender">
+      Gender: <span class="light-text" id="gender-text"></span>
+    </p>
+    <p class="strong-font" id="char-race">
+      Race: <span class="light-text" id="race-text"></span>
+    </p>
+    <p class="strong-font" id="char-power">
+      Power Level: <span class="light-text" id="power-text"></span>
+    </p>
+    <p class="strong-font" id="char-traits">
+      Character Trait: <span class="light-text" id="traits-text"></span>
+    </p>
+    <p class="strong-font" id="char-alignment">
+      Alignment: <span class="light-text" id="alignment-text"></span></p>
+    <p class="strong-font" id="char-background">
+      Background: <span class="light-text" id="background-text"></span>
+    </p>
+    <div id="stats-container">
+      <h3 id="stats-heading" class="hidden">Character Stats:</h3>
+      <ul id="char-stats">
+        <li id="char-strength"></li>
+        <li id="char-dexterity"></li>
+        <li id="char-constitution"></li>
+        <li id="char-intellect"></li>
+        <li id="char-wisdom"></li>
+        <li id="char-charisma"></li>
+      </ul>
+    </div>
+  </section>
+
+  </div>
+  <section id="dice-roll-section">
+    <button id="randomize-all">Randomize</button>
+  </section>
+</div>
+
+<script src="assets/js/app.js"></script>
+
+<!-- Generator body -->
+
+
+
+</body>
+</html>
